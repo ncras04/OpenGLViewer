@@ -5,6 +5,7 @@
 #include <GLFW/glfw3.h>
 #include <string>
 #include <iostream>
+#include "CShader.h"
 
 struct SViewport
 {
@@ -19,6 +20,7 @@ struct SViewport
 
 private:
     GLFWwindow* m_pWindow = nullptr;
+	SShader m_shaderProgram;
 
 
 	const int M_I_GLFW_VERSION_MAJOR = 3;

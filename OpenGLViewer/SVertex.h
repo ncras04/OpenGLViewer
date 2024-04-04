@@ -5,7 +5,6 @@
 struct SVertex
 {
 	glm::vec3 position;
-	glm::vec3 color;
 };
 #endif //!VERTEX_H
 

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{292360c1-2911-4a96-b63e-cb846958d315}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="Viewport.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="CShader.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -38,5 +44,16 @@
     <ClInclude Include="SVertex.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="CShader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vertex.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Fragment.glsl">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>
