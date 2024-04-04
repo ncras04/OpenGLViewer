@@ -4,7 +4,6 @@ int CEngine::Initialize(void)
 {
     GLFWwindow* window;
 
-    /* Initialize the library */
     if (!glfwInit())
         return -1;
 
@@ -20,7 +19,6 @@ int CEngine::Run(void)
         m_viewport.Update();
         m_viewport.Draw();
 
-        /* Poll for and process events */
         glfwPollEvents();
     }
 
