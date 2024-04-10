@@ -43,11 +43,10 @@ void SMesh::CreateBuffers()
 	m_vertexBuf.CreateBufferObject();
 	m_vertexBuf.Bind(GL_ARRAY_BUFFER);
 	m_vertexBuf.Fill(sizeof(vertices), &vertices, GL_STATIC_DRAW);
-	m_vertexBuf.LinkAttribute(3, GL_FLOAT, false, 0, 0);
+	m_vertexBuf.LinkAttribute(3, GL_FLOAT, false, sizeof(SVertex), 0);
 	m_vertexBuf.EnableAttribute();
 
 	m_indexBuf.CreateBufferObject();
 	m_indexBuf.Bind(GL_ELEMENT_ARRAY_BUFFER);
 	m_indexBuf.Fill(sizeof(indices), &indices, GL_STATIC_DRAW);
-	glBindVertexArray(0);
 }
