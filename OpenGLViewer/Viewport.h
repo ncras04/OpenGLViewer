@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 #include <string>
 #include <iostream>
-#include "CShader.h"
+#include "Shader.h"
 
 struct SViewport
 {
@@ -16,6 +16,7 @@ struct SViewport
     int Initialize(void);
     int Update(void);
     int Draw(void);
+	int LateDraw(void);
     void Finalize(void);
 
 private:

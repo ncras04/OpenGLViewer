@@ -1,4 +1,7 @@
 #include "Engine.h"
+#include "SVertex.h"
+#include "Shader.h"
+#include "Mesh.h"
 
 int CEngine::Initialize(void)
 {
@@ -14,10 +17,18 @@ int CEngine::Initialize(void)
 
 int CEngine::Run(void)
 {
+	SShader shaderProgram = SShader("Vertex.glsl", "Fragment.glsl");
+    SMesh mesh{};
+    mesh.Init(&shaderProgram, nullptr);
+
     while (!glfwWindowShouldClose(m_viewport.GetWindow()))
     {
         m_viewport.Update();
+        mesh.Update();
         m_viewport.Draw();
+
+        mesh.Draw();
+		m_viewport.LateDraw();
 
         glfwPollEvents();
     }

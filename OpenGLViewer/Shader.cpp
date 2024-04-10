@@ -1,4 +1,4 @@
-#include "CShader.h"
+#include "Shader.h"
 
 SShader::SShader(const char* vertexPath, const char* fragmentPath)
 {
@@ -92,3 +92,15 @@ void SShader::Use()
 {
 	glUseProgram(id);
 }
+
+unsigned int SShader::GetAttributeLocation(const char* _name)
+{
+	return glGetAttribLocation(id, _name);
+}
+
+//unsigned int SShader::GetUniformLocation(const char* _name)
+//{
+//	return glGetUniformLocation(id, _name);
+//}
+
+

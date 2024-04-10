@@ -31,8 +31,6 @@ int SViewport::Initialize(void)
 		return -2;
 	}
 
-	m_shaderProgram = SShader("Vertex.glsl", "Fragment.glsl");
-
 	//unsigned int vertexShader{};
 	//vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
@@ -67,36 +65,13 @@ int SViewport::Draw(void)
 	glClearColor(M_F_RED, M_F_GREEN, M_F_BLUE, M_F_ALPHA);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	SVertex vertices[] = {
-	glm::vec3(-0.5f, -0.5f, 0.0f),
-	glm::vec3(0.5f, -0.5f, 0.0f),
-	glm::vec3(0.0f, 0.5f, 0.0f)
-	};
+	return 0;
+}
 
-	unsigned int VBO{}; //vertex buffer object
-	glGenBuffers(1, &VBO); //generiere buffer id
-
-	unsigned int VAO{}; //vertex array object
-	glGenVertexArrays(1, &VAO); 
-	glBindVertexArray(VAO);
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO); //binde id mit einem typ buffer
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	//kopiere daten auf gpu von cpu //Hint: Static Draw is set only once and used may times
-	
-	m_shaderProgram.Use();
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(SVertex), (void*)0); //Tells gpu how to interpret data
-	//takes data from memory managed by vbo (can have multiple vbo) bound to array:buffer)
-	glEnableVertexAttribArray(0); //0 steht für location 0 im vertex shader;
-
-	glBindVertexArray(VAO);
-
-	glDrawArrays(GL_TRIANGLES, 0, 4);
-
-	glDeleteBuffers(0, &VBO);
+int SViewport::LateDraw(void)
+{
 
 	glfwSwapBuffers(m_pWindow);
-
 	return 0;
 }
 
