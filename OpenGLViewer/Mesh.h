@@ -27,8 +27,7 @@ struct SMesh
 	//translate rotate scale methode
 
 private: 
-	//SBuffer 
-		unsigned int m_vertexBuf{}, m_indexBuf{};
+	SBuffer  m_vertexBuf{}, m_indexBuf{};
 	unsigned int m_vao{};
 };
 
