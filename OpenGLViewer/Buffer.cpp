@@ -21,7 +21,7 @@ void SBuffer::Bind(GLenum _target)
 	glBindBuffer(m_target, m_bufferID);
 }
 
-void SBuffer::Fill(GLsizeiptr _size, const void* _data, GLenum _usage)
+void SBuffer::BufferFill(GLsizeiptr _size, const void* _data, GLenum _usage)
 {
 	glBufferData(m_target, _size, _data, _usage);
 }

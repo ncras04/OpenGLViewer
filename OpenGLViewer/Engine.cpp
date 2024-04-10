@@ -25,9 +25,10 @@ int CEngine::Run(void)
     {
         m_viewport.Update();
         mesh.Update();
-        m_viewport.Draw();
 
+        m_viewport.Draw();
         mesh.Draw();
+
 		m_viewport.LateDraw();
 
         glfwPollEvents();

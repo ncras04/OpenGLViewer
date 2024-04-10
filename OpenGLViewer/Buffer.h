@@ -6,7 +6,7 @@ struct SBuffer
 	void CreateBufferObject();
 	void SetAttributeID(const char*, unsigned int);
 	void Bind(GLenum);
-	void Fill(GLsizeiptr, const void*, GLenum);
+	void BufferFill(GLsizeiptr, const void*, GLenum);
 	void LinkAttribute(unsigned int, GLenum, bool, GLsizei, const void*);
 	void EnableAttribute();
 	void Finalize();
