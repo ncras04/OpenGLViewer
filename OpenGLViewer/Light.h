@@ -8,9 +8,9 @@ struct SLight
 	const glm::vec3 diffuse{ glm::vec3(0.5f, 0.5f, 0.5f) };
 	const glm::vec3 specular{ glm::vec3(0.5f, 0.5f, 0.5f) };
 
-	float attenuationConst{};
-	float attenuationLinear{};
-	float attenuationQuad{};
+	float attenuationConst{1.0f};
+	float attenuationLinear{0.1f};
+	float attenuationQuad{0.1f};
 
 	void Init(SShader*);
 	void Draw();

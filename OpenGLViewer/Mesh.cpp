@@ -8,10 +8,10 @@
 void SMesh::Init(SShader* _shader, SMaterial* _material)
 {
 	vertices = {
-		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, -1.0f}},
-		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, -1.0f}},
-		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, -1.0f}},
-		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, 0.0f, -1.0f}},
+		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
+		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
+		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
+		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, 0.0f, 1.0f}},
 	};
 
 	indices = { 0,1,2,0,2,3 };
@@ -28,9 +28,6 @@ void SMesh::Init(SShader* _shader, SMaterial* _material)
 
 	m_cameraPosID = glGetUniformLocation(shader->id, "cameraPosition");
 
-	model = glm::mat4(1.0f);
-	position = glm::vec3(0.0f);
-
 }
 
 void SMesh::Update()
@@ -44,7 +41,7 @@ void SMesh::Draw(const SCamera& _camera)
 	glUniformMatrix4fv(m_modelID, 1, GL_FALSE, &model[0][0]);
 	glUniformMatrix4fv(m_viewID, 1, GL_FALSE, &_camera.view[0][0]); //camera
 	glUniformMatrix4fv(m_projID, 1, GL_FALSE, &_camera.projection[0][0]); //camera
-	glUniformMatrix3fv(m_modelID, 1, GL_TRUE, &normal[0][0]);
+	glUniformMatrix3fv(m_normalID, 1, GL_TRUE, &normal[0][0]);
 
 	glUniform3fv(m_cameraPosID, 1, &(_camera.position.x));
 

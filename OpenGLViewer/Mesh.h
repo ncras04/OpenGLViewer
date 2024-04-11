@@ -29,13 +29,13 @@ struct SMesh
 
 	void CreateBuffers();
 
-	glm::vec3 position;
-	glm::vec3 scale;
-	glm::vec3 rotation;
-	glm::mat4 model;
-	glm::mat3 normal;
+	glm::vec3 position{ 0.0f, 0.0f, 0.0f };
+	glm::vec3 scale{};
+	glm::vec3 rotation{};
+	glm::mat4 model{ glm::mat4(1.0f) };
+	glm::mat3 normal{};
 
-private: 
+private:
 	SBuffer  m_vertexBuf{}, m_indexBuf{};
 	unsigned int m_vao{};
 	unsigned int m_modelID{}, m_viewID{}, m_projID{}, m_normalID{}, m_cameraPosID;
