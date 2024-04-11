@@ -26,8 +26,8 @@ private:
 
 	const int M_I_GLFW_VERSION_MAJOR = 3;
 	const int M_I_GLFW_VERSION_MINOR = 3;
-	const int M_I_WIDTH = 640;
-	const int M_I_HEIGHT = 360;
+	const int M_I_WIDTH = 800;
+	const int M_I_HEIGHT = 600;
 	const char* M_S_TITLE = "OVL UE3";
 	const int M_I_OFFSET_X = 0;
 	const int M_I_OFFSET_Y = 0;

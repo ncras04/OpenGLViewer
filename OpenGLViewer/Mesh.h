@@ -4,8 +4,9 @@
 #include <vector>
 #include "SVertex.h"
 #include "Shader.h"
-#include "SMaterial.h"
+#include "Material.h"
 #include "Buffer.h"
+#include "Camera.h"
 
 struct SMesh
 {
@@ -18,17 +19,27 @@ struct SMesh
 	void Init(SShader*, SMaterial*);
 
 	void Update();
-	void Draw();
+	void Draw(const SCamera&);
 	void Finalize();
+
+	void Translate(float, float, float);
+	void Rotate(float, glm::vec3);
+	void Scale(float, float, float);
+
 
 	void CreateBuffers();
 
-	//modelmatrix, rot,pos,scale (Transform)
-	//translate rotate scale methode
+	glm::vec3 position;
+	glm::vec3 scale;
+	glm::vec3 rotation;
+	glm::mat4 model;
+	glm::mat3 normal;
 
 private: 
 	SBuffer  m_vertexBuf{}, m_indexBuf{};
 	unsigned int m_vao{};
+	unsigned int m_modelID{}, m_viewID{}, m_projID{}, m_normalID{}, m_cameraPosID;
+
 };
 
 #endif //!MESH_H

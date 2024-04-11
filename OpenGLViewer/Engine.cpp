@@ -1,7 +1,10 @@
 #include "Engine.h"
-#include "SVertex.h"
 #include "Shader.h"
+#include "SVertex.h"
 #include "Mesh.h"
+#include "Material.h"
+#include "Light.h"
+#include "Camera.h"
 
 int CEngine::Initialize(void)
 {
@@ -17,9 +20,20 @@ int CEngine::Initialize(void)
 
 int CEngine::Run(void)
 {
-	SShader shaderProgram = SShader("Vertex.glsl", "Fragment.glsl");
+	SShader shaderProgram = SShader("VertexLit.glsl", "FragmentLit.glsl");
+
+    SCamera camera{};
+    camera.Init();
+
+    SLight light{};
+    light.Init(&shaderProgram);
+
+    SMaterial material{};
+    material.Init(&shaderProgram);
+
     SMesh mesh{};
-    mesh.Init(&shaderProgram, nullptr);
+    mesh.Init(&shaderProgram, &material);
+
 
     while (!glfwWindowShouldClose(m_viewport.GetWindow()))
     {
@@ -27,7 +41,9 @@ int CEngine::Run(void)
         mesh.Update();
 
         m_viewport.Draw();
-        mesh.Draw();
+        light.Draw();
+        material.Draw();
+        mesh.Draw(camera);
 
 		m_viewport.LateDraw();
 

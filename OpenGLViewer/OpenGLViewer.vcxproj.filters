@@ -36,9 +36,6 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="SMaterial.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="SLight.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -46,6 +43,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Buffer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,9 +71,6 @@
     <ClInclude Include="Mesh.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="SMaterial.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="SLight.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -77,12 +80,24 @@
     <ClInclude Include="Buffer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vertex.glsl">
       <Filter>Shader</Filter>
     </None>
     <None Include="Fragment.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="FragmentLit.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="VertexLit.glsl">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

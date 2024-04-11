@@ -1,15 +1,17 @@
 #include "Mesh.h"
 #include "GLFW/glfw3.h"
 #include "glm/glm.hpp"
+#include<glm/gtx/transform.hpp>
 #include <iostream>
+#include "Camera.h"
 
 void SMesh::Init(SShader* _shader, SMaterial* _material)
 {
 	vertices = {
-		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}},
-		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}},
-		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}},
-		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}},
+		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, -1.0f}},
+		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, -1.0f}},
+		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, -1.0f}},
+		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, 0.0f, -1.0f}},
 	};
 
 	indices = { 0,1,2,0,2,3 };
@@ -18,24 +20,58 @@ void SMesh::Init(SShader* _shader, SMaterial* _material)
 	mat = _material;
 
 	CreateBuffers();
+
+	m_modelID = glGetUniformLocation(shader->id, "model");
+	m_viewID = glGetUniformLocation(shader->id, "view");
+	m_projID = glGetUniformLocation(shader->id, "projection");
+	m_normalID = glGetUniformLocation(shader->id, "normal");
+
+	m_cameraPosID = glGetUniformLocation(shader->id, "cameraPosition");
+
+	model = glm::mat4(1.0f);
+	position = glm::vec3(0.0f);
+
 }
 
 void SMesh::Update()
 {
-	shader->Use();
-	float time = glfwGetTime();
-	float greenVal = (sin(time) / 2.0f) + 0.5f;
-	int vertexColorLocation = glGetUniformLocation(shader->id, "unicol");
-	glUniform4f(vertexColorLocation, 0.0f, greenVal, 0.0f, 1.0f);
+	Rotate(0.1f, glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
-void SMesh::Draw()
+void SMesh::Draw(const SCamera& _camera)
 {
+	shader->Use();
+	glUniformMatrix4fv(m_modelID, 1, GL_FALSE, &model[0][0]);
+	glUniformMatrix4fv(m_viewID, 1, GL_FALSE, &_camera.view[0][0]); //camera
+	glUniformMatrix4fv(m_projID, 1, GL_FALSE, &_camera.projection[0][0]); //camera
+	glUniformMatrix3fv(m_modelID, 1, GL_TRUE, &normal[0][0]);
+
+	glUniform3fv(m_cameraPosID, 1, &(_camera.position.x));
+
+
 	glBindVertexArray(m_vao);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 }
 
 void SMesh::Finalize()
+{
+}
+
+void SMesh::Translate(float _x, float _y, float _z)
+{
+	position += glm::vec3{ _x, _y, _z };
+	model = glm::translate(model, glm::vec3{ _x, _y, _z });
+	normal = glm::inverse(glm::mat3(model));
+}
+
+void SMesh::Rotate(float _angle, glm::vec3 _axis)
+{
+	rotation += _axis * _angle;
+	model = glm::rotate(model, glm::radians(_angle), _axis);
+	normal = glm::inverse(glm::mat3(model));
+}
+
+void SMesh::Scale(float, float, float)
 {
 }
 
@@ -58,6 +94,12 @@ void SMesh::CreateBuffers()
 	attributeID = shader->GetAttributeLocation(attributeName);
 	m_vertexBuf.SetAttributeID(attributeName, attributeID);
 	m_vertexBuf.LinkAttribute(4, GL_FLOAT, false, sizeof(SVertex), (void*)sizeof(glm::vec3));
+	m_vertexBuf.EnableAttribute();
+
+	attributeName = "_nor";
+	attributeID = shader->GetAttributeLocation(attributeName);
+	m_vertexBuf.SetAttributeID(attributeName, attributeID);
+	m_vertexBuf.LinkAttribute(3, GL_FLOAT, false, sizeof(SVertex), (void*)(sizeof(glm::vec3)+sizeof(glm::vec4)));
 	m_vertexBuf.EnableAttribute();
 
 	m_indexBuf.CreateBufferObject();
