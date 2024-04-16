@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include "Shader.h"
+#include "Input.h"
 
 struct SViewport
 {
@@ -22,6 +23,7 @@ struct SViewport
 private:
     GLFWwindow* m_pWindow = nullptr;
 	SShader m_shaderProgram;
+	
 
 
 	const int M_I_GLFW_VERSION_MAJOR = 3;

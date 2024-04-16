@@ -38,7 +38,7 @@ struct SMesh
 private:
 	SBuffer  m_vertexBuf{}, m_indexBuf{};
 	unsigned int m_vao{};
-	unsigned int m_modelID{}, m_viewID{}, m_projID{}, m_normalID{}, m_cameraPosID;
+	unsigned int m_modelID{}, m_viewID{}, m_projID{}, m_normalID{}, m_cameraPosID{};
 
 };
 

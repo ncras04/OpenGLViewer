@@ -4,7 +4,7 @@
 
 void HandleFramebufferSize(GLFWwindow* _window, int width, int height)
 {
-	//glViewport(0, 0, width, height);
+	glViewport(0, 0, width, height);
 }
 
 int SViewport::Initialize(void)

@@ -4,6 +4,7 @@
 #include<glm/gtx/transform.hpp>
 #include <iostream>
 #include "Camera.h"
+#include "Time.h"
 
 void SMesh::Init(SShader* _shader, SMaterial* _material)
 {
@@ -32,7 +33,7 @@ void SMesh::Init(SShader* _shader, SMaterial* _material)
 
 void SMesh::Update()
 {
-	Rotate(0.1f, glm::vec3(0.0f, 1.0f, 0.0f));
+	Rotate(10.0f * STime::GetDeltaTime(), glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void SMesh::Draw(const SCamera& _camera)
@@ -68,8 +69,11 @@ void SMesh::Rotate(float _angle, glm::vec3 _axis)
 	normal = glm::inverse(glm::mat3(model));
 }
 
-void SMesh::Scale(float, float, float)
+void SMesh::Scale(float _x, float _y, float _z)
 {
+	scale += glm::vec3{ _x, _y, _z };
+	model = glm::scale(model, glm::vec3{ _x, _y, _z });
+	normal = glm::inverse(glm::mat3(model));
 }
 
 void SMesh::CreateBuffers()

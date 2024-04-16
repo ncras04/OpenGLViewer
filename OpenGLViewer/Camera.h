@@ -1,5 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
+#include <iostream>
 
 struct SCamera
 {
@@ -16,9 +17,14 @@ struct SCamera
 	void Init();
 	void Update();
 
-	void Translate(float, float, float);
+	void Translate(glm::vec3 _dir);
 
+private:
+	bool m_firstMouse{ true };
+	glm::vec2 m_lastMousePos;
 
+	float yaw{-90.0f};
+	float pitch{};
 
 };
 

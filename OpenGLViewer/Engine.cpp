@@ -5,22 +5,27 @@
 #include "Material.h"
 #include "Light.h"
 #include "Camera.h"
+#include "Input.h"
+#include "Time.h"
 
 int CEngine::Initialize(void)
 {
-    GLFWwindow* window;
-
     if (!glfwInit())
         return -1;
 
     m_viewport.Initialize();
+    glfwSetInputMode(m_viewport.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    SInput::Init(m_viewport.GetWindow());
+    STime::Init();
+    glCullFace(GL_FRONT);
+    glEnable(GL_CULL_FACE);
 
     return 0;
 }
 
 int CEngine::Run(void)
 {
-	SShader shaderProgram = SShader("VertexLit.glsl", "FragmentLit.glsl");
+    SShader shaderProgram = SShader("VertexLit.glsl", "FragmentLit.glsl");
 
     SCamera camera{};
     camera.Init();
@@ -37,7 +42,10 @@ int CEngine::Run(void)
 
     while (!glfwWindowShouldClose(m_viewport.GetWindow()))
     {
+        STime::Update();
+
         m_viewport.Update();
+        camera.Update();
         mesh.Update();
 
         m_viewport.Draw();

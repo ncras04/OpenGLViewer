@@ -54,6 +54,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -84,6 +90,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
