@@ -7,7 +7,7 @@ struct SMaterial
 	glm::vec3 ambient{ 1.0f, 1.0f, 1.0f };
 	glm::vec3 diffuse{ 1.0f, 1.0f, 1.0f };
 	glm::vec3 specular{ 1.0f, 1.0f, 1.0f };
-	float shininess{ 1.0f };
+	float shininess{ 32.0f };
 
 	void Init(SShader*);
 	void Draw();

@@ -41,7 +41,7 @@ vec3 CalcDiffuse()
 	vec3 lightDirection = normalize(light.position - vertexPos);
 	float lightIntensity = max(dot(lightDirection, normal), 0.0);
 
-	return light.diffuse * material.diffuse * lightIntensity;
+	return light.diffuse * (vec3(vertexCol) * lightIntensity); //material.diffuse
 }
 
 vec3 CalcSpecular()
@@ -50,9 +50,9 @@ vec3 CalcSpecular()
 	vec3 lightDirection = normalize(light.position - vertexPos);
 	vec3 viewDirection = normalize(cameraPosition - vertexPos);
 	vec3 reflection = reflect(-lightDirection, normal);
-	float specular = pow(max(dot(viewDirection, reflection),0.0), material.shininess);
+	float specularIntensity = pow(max(dot(viewDirection, reflection),0.0), material.shininess);
 
-	return light.specular * material.shininess * specular;
+	return light.specular * (material.shininess * specularIntensity);
 }
 
 float CalcAttenuation()

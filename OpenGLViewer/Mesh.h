@@ -32,7 +32,7 @@ struct SMesh
 	glm::vec3 position{ 0.0f, 0.0f, 0.0f };
 	glm::vec3 scale{};
 	glm::vec3 rotation{};
-	glm::mat4 model{ glm::mat4(1.0f) };
+	glm::mat4 model{};
 	glm::mat3 normal{};
 
 private:

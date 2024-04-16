@@ -29,6 +29,9 @@ void SMesh::Init(SShader* _shader, SMaterial* _material)
 
 	m_cameraPosID = glGetUniformLocation(shader->id, "cameraPosition");
 
+	model = glm::translate(glm::mat4{ 1.0f }, position);
+	normal = glm::inverse(glm::mat3(model));
+
 }
 
 void SMesh::Update()
