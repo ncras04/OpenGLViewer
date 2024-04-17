@@ -12,7 +12,7 @@ struct SCamera
 	glm::mat4 projection{};
 
 	float nearPlane{ 0.1f }, farPlane{100.0f};
-	float fov{45.0f};
+	float fov{glm::radians(45.0f)};
 
 	void Init();
 	void Update();
@@ -20,6 +20,7 @@ struct SCamera
 	void Translate(glm::vec3 _dir);
 
 private:
+
 	bool m_firstMouse{ true };
 	glm::vec2 m_lastMousePos;
 

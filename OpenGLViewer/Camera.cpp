@@ -2,6 +2,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Input.h"
 #include "Time.h"
+#include "glm/glm.hpp"
 
 void SCamera::Init()
 {

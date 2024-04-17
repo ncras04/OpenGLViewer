@@ -9,6 +9,7 @@
 void SMesh::Init(SShader* _shader, SMaterial* _material)
 {
 	vertices = {
+	//			pos						color					normal
 		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
 		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
 		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
