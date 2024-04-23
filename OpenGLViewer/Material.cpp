@@ -1,5 +1,5 @@
 #include "Material.h"
-
+#include "Time.h"
 void SMaterial::Init(SShader* _shader)
 {
 	m_shader = _shader;
@@ -19,6 +19,8 @@ void SMaterial::Draw()
 
 	m_texture.Draw();
 	m_texture2.Draw();
+
+	glUniform1f(glGetUniformLocation(m_shader->id, "time"), STime::GetTime());
 
 	glUniform3fv(matAmbientID, 1, &ambient.x);
 	glUniform3fv(matDiffuseID, 1, &diffuse.x);

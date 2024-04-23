@@ -4,6 +4,8 @@ struct STime
 {
 	static int Init();
 	static float GetDeltaTime() { return m_deltaTime; };
+	static float GetTime() { return m_totalTime; };
+
 	static void Update();
 	
 private:

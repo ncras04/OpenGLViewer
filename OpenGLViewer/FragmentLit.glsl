@@ -25,6 +25,8 @@ uniform Light light;
 uniform Material material;
 uniform vec3 cameraPosition;
 
+uniform float time;
+
 uniform sampler2D diffuseTexture;
 uniform sampler2D overlayTexture;
 
@@ -98,9 +100,22 @@ void main()
 
 	float line = smoothstep(0.5, 0.0, abs(vertexUVs.y - 0.5));
 
-	fragColor = col * clamp((diffTex * vertexCol.x) + (overlayTex * vertexCol.z),0.0,1.0);
+	float distToCenter = length(vertexUVs - 0.5);
+	float d = sin(distToCenter * 50.0 - time * 2.0);
+	vec2 dir = normalize(vertexUVs - 0.5);
+	vec2 ripples = vertexUVs + d * dir * 0.05;
 
-//	fragColor = col * mix(mix(diffTex, overlayTex, line), overlayTex, overlayTex.w);
+	fragColor = texture(diffuseTexture,ripples);
+
+
+	vec2 dimensions = vec2(64.0, 64.0);
+	vec2 texUV = floor(vertexUVs * dimensions) / dimensions;
+//	vec3 pixel = texture(diffuseTexture, texUV).xyz;
+
+//	fragColor = texture(diffuseTexture, texUV);
+	//fragColor = col * clamp((diffTex * vertexCol.x) + (overlayTex * vertexCol.z),0.0,1.0);
+
+fragColor = col * mix(mix(diffTex, overlayTex, line), overlayTex, overlayTex.w);
 
 //	fragColor = vec4(vertexUVs.x, vertexUVs.y, 0.0, 1.0);
 //	float depth = LinearizeDepth(gl_FragCoord.z) / far; // divide by far for demonstration
