@@ -10,13 +10,13 @@ void SMesh::Init(SShader* _shader, SMaterial* _material)
 {
 	vertices = {
 	//			pos						color					normal
-		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
-		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
-		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}},
-		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, 0.0f, 1.0f}},
+		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f}},
+		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f}},
+		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 1.0f}},
+		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f}},
 	};
 
-	indices = { 0,1,2,0,2,3 };
+	indices = { 0,3,2,0,2,1 };
 
 	shader = _shader;
 	mat = _material;
@@ -37,7 +37,7 @@ void SMesh::Init(SShader* _shader, SMaterial* _material)
 
 void SMesh::Update()
 {
-	Rotate(10.0f * STime::GetDeltaTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+	//Rotate(10.0f * STime::GetDeltaTime(), glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void SMesh::Draw(const SCamera& _camera)
@@ -49,7 +49,6 @@ void SMesh::Draw(const SCamera& _camera)
 	glUniformMatrix3fv(m_normalID, 1, GL_TRUE, &normal[0][0]);
 
 	glUniform3fv(m_cameraPosID, 1, &(_camera.position.x));
-
 
 	glBindVertexArray(m_vao);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
@@ -105,6 +104,12 @@ void SMesh::CreateBuffers()
 	attributeID = shader->GetAttributeLocation(attributeName);
 	m_vertexBuf.SetAttributeID(attributeName, attributeID);
 	m_vertexBuf.LinkAttribute(3, GL_FLOAT, false, sizeof(SVertex), (void*)(sizeof(glm::vec3)+sizeof(glm::vec4)));
+	m_vertexBuf.EnableAttribute();
+
+	attributeName = "_uvs";
+	attributeID = shader->GetAttributeLocation(attributeName);
+	m_vertexBuf.SetAttributeID(attributeName, attributeID);
+	m_vertexBuf.LinkAttribute(2, GL_FLOAT, false, sizeof(SVertex), (void*)(sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec3)));
 	m_vertexBuf.EnableAttribute();
 
 	m_indexBuf.CreateBufferObject();

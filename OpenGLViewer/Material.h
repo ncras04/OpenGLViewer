@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include "Shader.h"
+#include "Texture.h"
 
 struct SMaterial
 {
@@ -15,9 +16,7 @@ struct SMaterial
 private:
 
 	SShader* m_shader{};
+	STexture m_texture{};
 	unsigned int matAmbientID{}, matDiffuseID{}, matSpecID{}, matShiniID{};
-
-
-
 };
 

@@ -1,5 +1,5 @@
-#version 330 core
-
+#version 330 core	
+	
 struct Light
 {
 	vec3 position;
@@ -8,31 +8,35 @@ struct Light
 	vec3 specular;
 
 	float attConst;
-	float attLinear;
 	float attQuad;
+	float attLinear;
 };
 
 struct Material
 {
-	vec3 position;
-	vec3 ambient;
-	vec3 diffuse;
-	float shininess;
+	vec3 ambient; //Grundfarbe
+	vec3 diffuse; //Grundfarbe
+	vec3 specular; //Reflektionfarbe
+	float shininess; //Intensitätswert
 };
+
 
 uniform Light light;
 uniform Material material;
 uniform vec3 cameraPosition;
 
+uniform sampler2D plainTexture;
+
 in vec3 vertexPos;
 in vec3 vertexNor;
 in vec4 vertexCol;
+in vec2 vertexUVs;
 
 out vec4 fragColor;
 
 vec3 CalcAmbient()
 {
-	return light.ambient * vec3(vertexCol); //material.ambient;
+	return light.ambient * material.ambient; //material.ambient;
 }
 
 vec3 CalcDiffuse()
@@ -41,7 +45,7 @@ vec3 CalcDiffuse()
 	vec3 lightDirection = normalize(light.position - vertexPos);
 	float lightIntensity = max(dot(lightDirection, normal), 0.0);
 
-	return light.diffuse * (vec3(vertexCol) * lightIntensity); //material.diffuse
+	return light.diffuse * (material.diffuse * lightIntensity); //material.diffuse
 }
 
 vec3 CalcSpecular()
@@ -52,7 +56,7 @@ vec3 CalcSpecular()
 	vec3 reflection = reflect(-lightDirection, normal);
 	float specularIntensity = pow(max(dot(viewDirection, reflection),0.0), material.shininess);
 
-	return light.specular * (material.shininess * specularIntensity);
+	return light.specular * (material.specular * specularIntensity);
 }
 
 float CalcAttenuation()
@@ -73,5 +77,5 @@ void main()
 
 	vec4 col = vec4(attenuation * (ambient + diffuse + specular), 1.0);
 
-	fragColor = col;
+	fragColor = col * texture(plainTexture,vertexUVs);
 }

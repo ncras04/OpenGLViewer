@@ -17,7 +17,7 @@ int CEngine::Initialize(void)
     glfwSetInputMode(m_viewport.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     SInput::Init(m_viewport.GetWindow());
     STime::Init();
-    glCullFace(GL_FRONT);
+    glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);
 
     return 0;

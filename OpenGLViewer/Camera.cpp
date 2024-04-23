@@ -25,9 +25,9 @@ void SCamera::Update()
 	if (SInput::GetKey(GLFW_KEY_S))
 		Translate(-tmpdir * STime::GetDeltaTime());
 	if (SInput::GetKey(GLFW_KEY_A))
-		Translate(-glm::normalize(glm::cross(tmpdir, up)) * STime::GetDeltaTime());
+		Translate(glm::normalize(glm::cross(up, tmpdir)) * STime::GetDeltaTime());
 	if (SInput::GetKey(GLFW_KEY_D))
-		Translate(glm::normalize(glm::cross(tmpdir, up)) * STime::GetDeltaTime());
+		Translate(-glm::normalize(glm::cross(up, tmpdir)) * STime::GetDeltaTime());
 
 	glm::vec2 newMousePos = SInput::GetMousePos();
 
