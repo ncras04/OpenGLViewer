@@ -129,5 +129,8 @@
     <Image Include="container.jpg">
       <Filter>Ressourcendateien</Filter>
     </Image>
+    <Image Include="SAELogo.png">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
   </ItemGroup>
 </Project>

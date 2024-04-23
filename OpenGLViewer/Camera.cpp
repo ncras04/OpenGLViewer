@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "Input.h"
+#include "Viewport.h"
 #include "Time.h"
 #include "glm/glm.hpp"
 
@@ -12,8 +13,7 @@ void SCamera::Init()
 
 	view = glm::lookAt(position, position + direction, up);
 
-	projection = glm::perspective(fov, float(800 / 600), nearPlane, farPlane);
-
+	projection = glm::perspective(fov, (float)800 / 600, nearPlane, farPlane);
 }
 
 void SCamera::Update()

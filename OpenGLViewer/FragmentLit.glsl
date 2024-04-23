@@ -25,7 +25,8 @@ uniform Light light;
 uniform Material material;
 uniform vec3 cameraPosition;
 
-uniform sampler2D plainTexture;
+uniform sampler2D diffuseTexture;
+uniform sampler2D overlayTexture;
 
 in vec3 vertexPos;
 in vec3 vertexNor;
@@ -67,6 +68,16 @@ float CalcAttenuation()
 				+( light.attQuad * dist * dist));
 }
 
+
+float near = 0.1; 
+float far  = 10.0; 
+  
+float LinearizeDepth(float depth) 
+{
+    float z = depth * 2.0 - 1.0; // back to NDC 
+    return (2.0 * near * far) / (far + near - z * (far - near));	
+}
+
 void main()
 {
 	vec3 ambient = CalcAmbient();
@@ -77,5 +88,21 @@ void main()
 
 	vec4 col = vec4(attenuation * (ambient + diffuse + specular), 1.0);
 
-	fragColor = col * texture(plainTexture,vertexUVs);
+	vec4 diffTex = texture(diffuseTexture,vertexUVs);
+	vec4 overlayTex = texture(overlayTexture, vertexUVs);
+
+//	fragColor = col * (mix(diffTex,overlayTex, overlayTex.w));
+
+	float stepping = step(0.5, vertexUVs.x);
+	float smoothstepping = smoothstep(0.25,0.75,vertexUVs.x);
+
+	float line = smoothstep(0.5, 0.0, abs(vertexUVs.y - 0.5));
+
+	fragColor = col * clamp((diffTex * vertexCol.x) + (overlayTex * vertexCol.z),0.0,1.0);
+
+//	fragColor = col * mix(mix(diffTex, overlayTex, line), overlayTex, overlayTex.w);
+
+//	fragColor = vec4(vertexUVs.x, vertexUVs.y, 0.0, 1.0);
+//	float depth = LinearizeDepth(gl_FragCoord.z) / far; // divide by far for demonstration
+//    fragColor = vec4(vec3(depth), 1.0);
 }

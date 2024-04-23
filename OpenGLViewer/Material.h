@@ -16,7 +16,7 @@ struct SMaterial
 private:
 
 	SShader* m_shader{};
-	STexture m_texture{};
+	STexture m_texture{}, m_texture2{};
 	unsigned int matAmbientID{}, matDiffuseID{}, matSpecID{}, matShiniID{};
 };
 

@@ -24,13 +24,11 @@ private:
     GLFWwindow* m_pWindow = nullptr;
 	SShader m_shaderProgram;
 	
-
-
 	const int M_I_GLFW_VERSION_MAJOR = 3;
 	const int M_I_GLFW_VERSION_MINOR = 3;
 	const int M_I_WIDTH = 800;
 	const int M_I_HEIGHT = 600;
-	const char* M_S_TITLE = "OVL UE3";
+	const char* M_S_TITLE = "OVL SHADER3";
 	const int M_I_OFFSET_X = 0;
 	const int M_I_OFFSET_Y = 0;
 	const float M_F_RED = 0.0f;

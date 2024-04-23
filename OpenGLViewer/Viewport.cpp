@@ -1,11 +1,11 @@
 #include "Viewport.h"
 #include "SVertex.h"
 
-
-void HandleFramebufferSize(GLFWwindow* _window, int width, int height)
+void HandleFramebufferSize(GLFWwindow* _window, int _width, int _height)
 {
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, _width, _height);
 }
+
 
 int SViewport::Initialize(void)
 {
@@ -14,6 +14,7 @@ int SViewport::Initialize(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	m_pWindow = glfwCreateWindow(M_I_WIDTH, M_I_HEIGHT, M_S_TITLE, NULL, NULL);
+	glfwSetFramebufferSizeCallback(m_pWindow, HandleFramebufferSize);
 
 	if (!m_pWindow)
 	{
@@ -23,7 +24,6 @@ int SViewport::Initialize(void)
 	}
 
 	glfwMakeContextCurrent(m_pWindow);
-	glfwSetFramebufferSizeCallback(m_pWindow, HandleFramebufferSize);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -42,7 +42,7 @@ int SViewport::Update(void)
 int SViewport::Draw(void)
 {
 	glClearColor(M_F_RED, M_F_GREEN, M_F_BLUE, M_F_ALPHA);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	return 0;
 }

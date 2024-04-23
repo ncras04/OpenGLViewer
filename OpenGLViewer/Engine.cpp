@@ -17,6 +17,9 @@ int CEngine::Initialize(void)
     glfwSetInputMode(m_viewport.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     SInput::Init(m_viewport.GetWindow());
     STime::Init();
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
     glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);
 
@@ -39,6 +42,14 @@ int CEngine::Run(void)
     SMesh mesh{};
     mesh.Init(&shaderProgram, &material);
 
+    SMaterial material2{};
+    material2.Init(&shaderProgram);
+
+    SMesh mesh2{};
+    mesh2.Init(&shaderProgram, &material);
+
+    mesh2.Translate(0.0f, 1.0f, -3.0f);
+
 
     while (!glfwWindowShouldClose(m_viewport.GetWindow()))
     {
@@ -47,11 +58,16 @@ int CEngine::Run(void)
         m_viewport.Update();
         camera.Update();
         mesh.Update();
+        mesh2.Update();
 
         m_viewport.Draw();
         light.Draw();
+
         material.Draw();
         mesh.Draw(camera);
+
+        material2.Draw();
+        mesh2.Draw(camera);
 
 		m_viewport.LateDraw();
 
