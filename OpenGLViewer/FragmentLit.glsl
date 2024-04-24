@@ -105,19 +105,32 @@ void main()
 	vec2 dir = normalize(vertexUVs - 0.5);
 	vec2 ripples = vertexUVs + d * dir * 0.05;
 
-	fragColor = texture(diffuseTexture,ripples);
+	vec4 painting = texture(diffuseTexture,ripples);
 
+	float alpha = step(0.001, overlayTex.w);
 
-	vec2 dimensions = vec2(64.0, 64.0);
-	vec2 texUV = floor(vertexUVs * dimensions) / dimensions;
+	fragColor = mix(painting,overlayTex, alpha);
+
+//	fragColor = mix(painting,overlayTex, overlayTex.w);
+
+//-----
+//	vec2 dimensions = vec2(64.0, 64.0);
+//	vec2 texUV = floor(vertexUVs * dimensions) / dimensions;
 //	vec3 pixel = texture(diffuseTexture, texUV).xyz;
 
+
 //	fragColor = texture(diffuseTexture, texUV);
+//-----
+
 	//fragColor = col * clamp((diffTex * vertexCol.x) + (overlayTex * vertexCol.z),0.0,1.0);
 
-fragColor = col * mix(mix(diffTex, overlayTex, line), overlayTex, overlayTex.w);
+//-----
+//fragColor = col * mix(mix(diffTex, overlayTex, line), overlayTex, overlayTex.w);
+//-----
 
+//-----
 //	fragColor = vec4(vertexUVs.x, vertexUVs.y, 0.0, 1.0);
+//-----
 //	float depth = LinearizeDepth(gl_FragCoord.z) / far; // divide by far for demonstration
 //    fragColor = vec4(vec3(depth), 1.0);
 }
