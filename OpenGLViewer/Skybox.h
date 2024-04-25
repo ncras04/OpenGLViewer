@@ -7,7 +7,7 @@
 #include <vector>
 #include "SVertex.h"
 
-struct Skybox
+struct SSkybox
 {
 
 	void Init();
@@ -20,13 +20,12 @@ private:
 
 	SBuffer  m_vertexBuf{}, m_indexBuf{};
 	unsigned int m_vao{};
-	unsigned int m_modelID{}, m_viewID{}, m_projID{};
+	unsigned int m_viewID{}, m_projID{};
 
 	SShader m_shader{};
 
 	unsigned int m_texID{};
 	unsigned int m_texUniform{};
-	std::string m_path{};
 	int m_unit{};
 
 };

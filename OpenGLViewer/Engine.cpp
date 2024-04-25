@@ -36,11 +36,17 @@ int CEngine::Run(void)
 {
     SShader shaderProgram = SShader("VertexLit.glsl", "FragmentLit.glsl");
 
+    SShader potProgram = SShader("VertPot.glsl", "FragPot.glsl");
+
+
     SCamera camera{};
     camera.Init();
 
     SLight light{};
     light.Init(&shaderProgram);
+
+    SLight light2{};
+    light2.Init(&potProgram);
 
     SMaterial material{};
     material.Init(&shaderProgram);
@@ -49,14 +55,14 @@ int CEngine::Run(void)
     mesh.Init(&shaderProgram, &material, cubeverts, cubeindices);
 
     SMaterial material2{};
-    material2.Init(&shaderProgram);
+    material2.Init(&potProgram);
 
     SMesh mesh2{};
-    mesh2.Init(&shaderProgram, &material, quadverts, quadindices);
+    mesh2.Init(&potProgram, &material, potverts, potindices);
 
-    mesh2.Translate(0.0f, 1.0f, -3.0f);
+    mesh2.Translate(0.0f, -3.0f, -5.0f);
 
-    Skybox sbox{};
+    SSkybox sbox{};
     sbox.Init();
 
 
@@ -73,8 +79,9 @@ int CEngine::Run(void)
         light.Draw();
 
         material.Draw();
-        mesh.Draw(camera);
+        //mesh.Draw(camera);
 
+        light2.Draw();
         material2.Draw();
         mesh2.Draw(camera);
 

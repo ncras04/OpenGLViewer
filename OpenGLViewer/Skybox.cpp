@@ -2,7 +2,7 @@
 #include "Meshdata.h"
 #include <glm/gtx/transform.hpp>
 
-void Skybox::Init()
+void SSkybox::Init()
 {
 	vertices = cubeverts;
 	indices = cubeindices;
@@ -59,7 +59,7 @@ void Skybox::Init()
 	glUniform1i(m_texUniform, m_unit);
 }
 
-void Skybox::Draw(const SCamera& _camera)
+void SSkybox::Draw(const SCamera& _camera)
 {
 	m_shader.Use();
 
@@ -87,7 +87,7 @@ void Skybox::Draw(const SCamera& _camera)
 
 }
 
-void Skybox::CreateBuffers()
+void SSkybox::CreateBuffers()
 {
 	glGenVertexArrays(1, &m_vao);
 

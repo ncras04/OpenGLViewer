@@ -138,6 +138,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="SCamera.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SLight.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Meshdata.h" />
+    <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SLight.h" />
     <ClInclude Include="Shader.h" />
@@ -170,10 +172,12 @@
   <ItemGroup>
     <None Include="Fragment.glsl" />
     <None Include="FragmentLit.glsl" />
+    <None Include="FragPot.glsl" />
     <None Include="SkyboxFrag.glsl" />
     <None Include="SkyboxVert.glsl" />
     <None Include="Vertex.glsl" />
     <None Include="VertexLit.glsl" />
+    <None Include="VertPot.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="container.jpg" />

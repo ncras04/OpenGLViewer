@@ -69,6 +69,9 @@
     <ClCompile Include="Skybox.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="ObjLoader.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -119,6 +122,9 @@
     <ClInclude Include="Skybox.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="ObjLoader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vertex.glsl">
@@ -137,6 +143,12 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="SkyboxVert.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="FragPot.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="VertPot.glsl">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

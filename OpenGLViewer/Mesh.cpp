@@ -5,10 +5,11 @@
 #include <iostream>
 #include "Camera.h"
 #include "Time.h"
+#include "ObjLoader.h"
 
-void SMesh::Init(SShader* _shader, SMaterial* _material, 
-				std::vector<SVertex> _vectices, 
-				std::vector<unsigned int> _indices)
+void SMesh::Init(SShader* _shader, SMaterial* _material,
+	std::vector<SVertex> _vectices,
+	std::vector<unsigned int> _indices)
 {
 
 	vertices = _vectices;
@@ -33,7 +34,7 @@ void SMesh::Init(SShader* _shader, SMaterial* _material,
 
 void SMesh::Update()
 {
-	Rotate(10.0f * STime::GetDeltaTime(), glm::vec3(0.5f, 1.0f, 0.0f));
+	Rotate(15.0f * STime::GetDeltaTime(), glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void SMesh::Draw(const SCamera& _camera)
@@ -99,7 +100,7 @@ void SMesh::CreateBuffers()
 	attributeName = "_nor";
 	attributeID = shader->GetAttributeLocation(attributeName);
 	m_vertexBuf.SetAttributeID(attributeName, attributeID);
-	m_vertexBuf.LinkAttribute(3, GL_FLOAT, false, sizeof(SVertex), (void*)(sizeof(glm::vec3)+sizeof(glm::vec4)));
+	m_vertexBuf.LinkAttribute(3, GL_FLOAT, false, sizeof(SVertex), (void*)(sizeof(glm::vec3) + sizeof(glm::vec4)));
 	m_vertexBuf.EnableAttribute();
 
 	attributeName = "_uvs";
@@ -112,5 +113,5 @@ void SMesh::CreateBuffers()
 	m_indexBuf.Bind(GL_ELEMENT_ARRAY_BUFFER);
 	m_indexBuf.BufferFill(sizeof(unsigned int) * indices.size(), &indices.front(), GL_STATIC_DRAW);
 	glBindVertexArray(0);
-	
+
 }
