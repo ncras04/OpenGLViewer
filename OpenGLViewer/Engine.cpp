@@ -8,6 +8,7 @@
 #include "Input.h"
 #include "Time.h"
 #include "Meshdata.h"
+#include "Skybox.h"
 
 int CEngine::Initialize(void)
 {
@@ -55,6 +56,9 @@ int CEngine::Run(void)
 
     mesh2.Translate(0.0f, 1.0f, -3.0f);
 
+    Skybox sbox{};
+    sbox.Init();
+
 
     while (!glfwWindowShouldClose(m_viewport.GetWindow()))
     {
@@ -73,6 +77,8 @@ int CEngine::Run(void)
 
         material2.Draw();
         mesh2.Draw(camera);
+
+        sbox.Draw(camera);
 
 		m_viewport.LateDraw();
 

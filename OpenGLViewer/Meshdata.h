@@ -1,9 +1,10 @@
-#pragma once
+#ifndef MESHDATA_H
+#define MESHDATA_H
 #include <vector>
 #include <glm/glm.hpp>
 #include "SVertex.h"
 
-std::vector<SVertex> quadverts{
+static std::vector<SVertex> quadverts{
 	//			pos						color					normal
 		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f}},
 		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f}},
@@ -11,9 +12,9 @@ std::vector<SVertex> quadverts{
 		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f}},
 };
 
-std::vector<unsigned int> quadindices{ 0,3,2,0,2,1 };
+static std::vector<unsigned int> quadindices{ 0,3,2,0,2,1 };
 
-std::vector<SVertex> cubeverts{
+static std::vector<SVertex> cubeverts{
 
 	//front
 	{{-0.5f, -0.5f, 0.5f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f}},
@@ -52,7 +53,7 @@ std::vector<SVertex> cubeverts{
 	{{ 0.5f, -0.5f, -0.5f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, -1.0f, 0.0f}, {1.0f, 0.0f}},
 };
 
-std::vector<unsigned int> cubeindices{
+static std::vector<unsigned int> cubeindices{
 
 	0,3,2,0,2,1,
 	0 + 4,3 + 4,2 + 4,0 + 4,2 + 4,1 + 4,
@@ -61,3 +62,5 @@ std::vector<unsigned int> cubeindices{
 	0 + 16,3 + 16,2 + 16,0 + 16,2 + 16,1 + 16,
 	0 + 20,3 + 20,2 + 20,0 + 20,2 + 20,1 + 20,
 };
+
+#endif 
