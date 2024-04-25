@@ -18,7 +18,7 @@ void SCamera::Init()
 
 void SCamera::Update()
 {
-	glm::vec3 tmpdir = { direction.x, 0.0f, direction.z }; //fps steuerung
+	glm::vec3 tmpdir = { direction.x, direction.y, direction.z }; //fps steuerung
 
 	if (SInput::GetKey(GLFW_KEY_W))
 		Translate(tmpdir * STime::GetDeltaTime());

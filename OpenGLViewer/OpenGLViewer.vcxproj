@@ -154,6 +154,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Meshdata.h" />
     <ClInclude Include="SLight.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Engine.h" />

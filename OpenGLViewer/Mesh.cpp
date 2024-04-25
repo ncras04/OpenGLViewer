@@ -6,17 +6,13 @@
 #include "Camera.h"
 #include "Time.h"
 
-void SMesh::Init(SShader* _shader, SMaterial* _material)
+void SMesh::Init(SShader* _shader, SMaterial* _material, 
+				std::vector<SVertex> _vectices, 
+				std::vector<unsigned int> _indices)
 {
-	vertices = {
-	//			pos						color					normal
-		{{-0.5f, -0.5f, 0.0f},	{0.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f}},
-		{{-0.5f,  0.5f, 0.0f},	{1.0f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f}},
-		{{ 0.5f,  0.5f, 0.0f},	{0.5f,0.5f,0.1f,1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 1.0f}},
-		{{ 0.5f, -0.5f, 0.0f},	{0.0f,0.5f,1.0f,1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f}},
-	};
 
-	indices = { 0,3,2,0,2,1 };
+	vertices = _vectices;
+	indices = _indices;
 
 	shader = _shader;
 	mat = _material;
@@ -37,7 +33,7 @@ void SMesh::Init(SShader* _shader, SMaterial* _material)
 
 void SMesh::Update()
 {
-	//Rotate(10.0f * STime::GetDeltaTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+	Rotate(10.0f * STime::GetDeltaTime(), glm::vec3(0.5f, 1.0f, 0.0f));
 }
 
 void SMesh::Draw(const SCamera& _camera)

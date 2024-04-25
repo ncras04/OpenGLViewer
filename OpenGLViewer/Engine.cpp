@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Input.h"
 #include "Time.h"
+#include "Meshdata.h"
 
 int CEngine::Initialize(void)
 {
@@ -22,6 +23,10 @@ int CEngine::Initialize(void)
     glDepthFunc(GL_LESS);
     glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);
+
+    int texUnits{};
+    glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &texUnits);
+    std::cout << texUnits << std::endl;
 
     return 0;
 }
@@ -40,13 +45,13 @@ int CEngine::Run(void)
     material.Init(&shaderProgram);
 
     SMesh mesh{};
-    mesh.Init(&shaderProgram, &material);
+    mesh.Init(&shaderProgram, &material, cubeverts, cubeindices);
 
     SMaterial material2{};
     material2.Init(&shaderProgram);
 
     SMesh mesh2{};
-    mesh2.Init(&shaderProgram, &material);
+    mesh2.Init(&shaderProgram, &material, quadverts, quadindices);
 
     mesh2.Translate(0.0f, 1.0f, -3.0f);
 

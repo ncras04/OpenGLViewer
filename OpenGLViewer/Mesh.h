@@ -16,8 +16,7 @@ struct SMesh
 	SMaterial* mat{};
 	SShader* shader{};
 
-	void Init(SShader*, SMaterial*);
-
+	void Init(SShader*, SMaterial*, std::vector<SVertex> = std::vector<SVertex>{}, std::vector<unsigned int> = std::vector<unsigned int>{});
 	void Update();
 	void Draw(const SCamera&);
 	void Finalize();
