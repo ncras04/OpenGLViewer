@@ -109,16 +109,16 @@ void main()
 //	fragColor = col * mix(mix(diffTex, overlayTex, line), overlayTex, overlayTex.w);
 
 //----Mario Effekt
-//	float distToCenter = length(vertexUVs - 0.5);
-//	float d = sin(distToCenter * 50.0 - time * 2.0);
-//	vec2 dir = normalize(vertexUVs - 0.5);
-//	vec2 ripples = vertexUVs + d * dir * 0.05;
-//
-//	vec4 painting = texture(diffuseTexture,ripples);
-//
-//	float alpha = step(0.001, overlayTex.w);
-//
-//	fragColor = mix(painting,overlayTex, alpha);
+	float distToCenter = length(vertexUVs - 0.5);
+	float d = sin(distToCenter * 50.0 - time * 2.0);
+	vec2 dir = normalize(vertexUVs - 0.5);
+	vec2 ripples = vertexUVs + d * dir * 0.05;
+
+	vec4 painting = texture(diffuseTexture,ripples);
+
+	float alpha = step(0.001, overlayTex.w);
+
+	fragColor = mix(painting,overlayTex, alpha);
 
 //-----Pixelize
 //	vec2 dimensions = vec2(64.0, 64.0);

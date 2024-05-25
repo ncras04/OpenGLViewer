@@ -7,7 +7,6 @@ void SSkybox::Init()
 	vertices = cubeverts;
 	indices = cubeindices;
 
-
 	m_shader = SShader("SkyboxVert.glsl", "SkyboxFrag.glsl");
 
 	CreateBuffers();
